@@ -1,0 +1,22 @@
+[
+    {
+        "medication_name": "Lisinopril",
+        "review_text": "This medication has been very effective for my high blood pressure. My readings have normalized within 2 weeks of starting treatment. I experienced slight dizziness on the first day but it resolved quickly. No other side effects. Highly recommend to anyone with hypertension."
+    },
+    {
+        "medication_name": "Lisinopril",
+        "review_text": "Good medication for blood pressure control but I developed a persistent dry cough after 3 weeks. Had to switch to a different ACE inhibitor. Lab work showed no kidney problems. Works well otherwise."
+    },
+    {
+        "medication_name": "Lisinopril",
+        "review_text": "Caused severe angioedema on my lips and throat. Had to go to emergency room. Do not use if you have any allergic tendencies. Other people seem to tolerate it well but I had a bad reaction."
+    },
+    {
+        "medication_name": "Metformin",
+        "review_text": "Excellent for blood sugar control. My HbA1c dropped from 8.5 to 6.8 in 3 months. Some GI issues initially but they improved with food intake. Weight loss benefit is a plus."
+    },
+    {
+        "medication_name": "Metformin",
+        "review_text": "Bad digestive issues. Constant nausea and stomach cramping. Could not continue taking it. My doctor reduced the dose which helped somewhat but not enough."
+    }
+]

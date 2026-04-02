@@ -1,0 +1,42 @@
+<div class="layout-container" [attr.data-theme]="isDark() ? 'dark' : 'light'">
+  <nav class="sidebar">
+    <div class="logo">
+      <i class="fas fa-heartbeat"></i>
+      <span>Healthcare AI</span>
+    </div>
+    <ul class="nav-menu">
+      <li>
+        <a routerLink="/" routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/xray" routerLinkActive="active">
+          <i class="fas fa-lungs"></i>
+          <span>X-Ray Analysis</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/reports" routerLinkActive="active">
+          <i class="fas fa-file-medical"></i>
+          <span>Medical Reports</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/medications" routerLinkActive="active">
+          <i class="fas fa-pills"></i>
+          <span>Medication Reviews</span>
+        </a>
+      </li>
+    </ul>
+    <button class="theme-toggle" (click)="toggleTheme()" title="Toggle dark/light mode">
+      <i [class]="isDark() ? 'fas fa-sun' : 'fas fa-moon'"></i>
+      <span>{{ isDark() ? 'Light' : 'Dark' }}</span>
+    </button>
+  </nav>
+  <main class="content">
+    <ng-content></ng-content>
+  </main>
+</div>

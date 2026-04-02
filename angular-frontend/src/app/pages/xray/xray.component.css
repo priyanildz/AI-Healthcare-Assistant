@@ -1,0 +1,228 @@
+:host {
+  --primary: #6366f1;
+  --secondary: #7c3aed;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --text-main: #4f46e5;
+  --text-heading: #4338ca;
+  --border-color: rgba(99, 102, 241, 0.15);
+  --shadow: 0 8px 20px rgba(99, 102, 241, 0.12);
+  display: block;
+}
+
+/* Dark Theme - No white shades */
+:host-context([data-theme="dark"]) {
+  --primary: #8b5cf6;
+  --secondary: #c4b5fd;
+  --bg-card: #110e1f; /* Deep violet-black */
+  --bg-input: #0b0a12; /* Darkest layer */
+  --text-main: #ddd6fe;
+  --text-heading: #ede9fe;
+  --border-color: #2e1065; 
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+.xray-container {
+  max-width: 1000px;
+  margin-left: 10px;
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--primary);
+  margin: 0 0 10px 0;
+}
+
+h1 i {
+  color: var(--primary);
+  margin-right: 12px;
+  font-size: 40px;
+}
+
+.subtitle {
+  color: var(--text-main);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.upload-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+.upload-box,
+.result-container,
+.result-card,
+.clinical-note {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.upload-box {
+  border: 2px dashed var(--primary) !important;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  transform: translateY(-2px);
+  background-color: var(--bg-input) !important;
+}
+
+.upload-box.drag-over {
+  border-color: var(--secondary) !important;
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+.upload-box i {
+  font-size: 56px;
+  color: var(--primary);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.upload-box h3 {
+  font-size: 20px;
+  color: var(--text-heading);
+  margin: 0 0 5px 0;
+}
+
+.upload-btn,
+.new-analysis-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.upload-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+.new-analysis-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+}
+
+.upload-btn:hover,
+.new-analysis-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.result-container {
+  padding: 30px;
+}
+
+.result-container h2,
+.finding h3,
+.probabilities h4,
+.clinical-note h4,
+.recommendations h4 {
+  color: var(--text-heading);
+}
+
+.result-card {
+  padding: 20px;
+  border-left: 4px solid var(--primary);
+}
+
+/* Confidence Badges - Refined for visibility */
+.confidence {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+[data-theme="light"] .confidence.high { background-color: #d1fae5; color: #065f46; }
+[data-theme="light"] .confidence.medium { background-color: #fef3c7; color: #92400e; }
+[data-theme="light"] .confidence.low { background-color: #fee2e2; color: #991b1b; }
+
+[data-theme="dark"] .confidence.high { background-color: #064e3b; color: #34d399; }
+[data-theme="dark"] .confidence.medium { background-color: #78350f; color: #fbbf24; }
+[data-theme="dark"] .confidence.low { background-color: #7f1d1d; color: #f87171; }
+
+.probabilities {
+  margin-top: 25px;
+}
+
+.prob-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prob-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 80px;
+  gap: 15px;
+  align-items: center;
+}
+
+.prob-item .bar {
+  background: var(--bg-input);
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.prob-item .bar .fill {
+  background: linear-gradient(90deg, #6366f1, #7c3aed);
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.prob-item .value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.clinical-note {
+  margin-top: 20px;
+  padding: 15px;
+  border-left: 4px solid var(--primary);
+}
+
+.recommendations li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Spinner */
+.spinner {
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+  .prob-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

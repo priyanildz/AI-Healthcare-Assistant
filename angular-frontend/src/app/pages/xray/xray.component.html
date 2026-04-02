@@ -1,0 +1,72 @@
+    <div class="xray-container">
+      <h1><i class="fas fa-lungs"></i> X-Ray Analysis</h1>
+      <p class="subtitle">Upload chest X-ray images for AI-powered classification</p>
+
+      <div class="upload-section">
+        <div class="upload-box" [class.drag-over]="isDragging()"
+             (dragover)="onDragOver($event)"
+             (dragleave)="onDragLeave()"
+             (drop)="onDrop($event)">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <h3>Upload X-Ray Image</h3>
+          <p>Drag and drop or click to select</p>
+          <input type="file" 
+                 #fileInput 
+                 hidden 
+                 accept="image/*"
+                 (change)="onFileSelected($event)">
+          <button class="upload-btn" (click)="fileInput.click()">
+            <i class="fas fa-folder-open"></i> Select Image
+          </button>
+        </div>
+
+        <div class="analysis-section" *ngIf="analysisResult()">
+          <div *ngIf="!isLoading()" class="result-container">
+            <h2><i class="fas fa-check-circle"></i> Analysis Result</h2>
+            <div class="result-card">
+              <div class="finding">
+                <h3>{{ analysisResult().finding }}</h3>
+                <p class="confidence" [class.high]="analysisResult().confidence > 0.6"
+                   [class.medium]="analysisResult().confidence > 0.4 && analysisResult().confidence <= 0.6"
+                   [class.low]="analysisResult().confidence <= 0.4">
+                  Confidence: {{ (analysisResult().confidence * 100).toFixed(2) }}%
+                </p>
+              </div>
+
+              <div class="probabilities">
+                <h4><i class="fas fa-chart-pie"></i> Class Probabilities</h4>
+                <div class="prob-list">
+                  <div *ngFor="let prob of getFormattedProbabilities()" class="prob-item">
+                    <span class="label">{{ prob.label }}</span>
+                    <div class="bar">
+                      <div class="fill" [style.width.%]="prob.value * 100"></div>
+                    </div>
+                    <span class="value">{{ (prob.value * 100).toFixed(2) }}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="analysisResult().clinical_note" class="clinical-note">
+                <h4><i class="fas fa-stethoscope"></i> Clinical Note</h4>
+                <p>{{ analysisResult().clinical_note }}</p>
+              </div>
+
+              <div *ngIf="analysisResult().recommendations" class="recommendations">
+                <h4><i class="fas fa-list-check"></i> Recommendations</h4>
+                <ul>
+                  <li *ngFor="let rec of analysisResult().recommendations">{{ rec }}</li>
+                </ul>
+              </div>
+            </div>
+            <button class="new-analysis-btn" (click)="resetAnalysis()">
+              <i class="fas fa-plus"></i> New Analysis
+            </button>
+          </div>
+          <div *ngIf="isLoading()" class="loading">
+            <div class="spinner"></div>
+            <p>Analyzing X-ray image...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  

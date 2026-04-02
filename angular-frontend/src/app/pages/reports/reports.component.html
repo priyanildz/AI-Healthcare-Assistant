@@ -1,0 +1,64 @@
+    <div class="reports-container">
+      <h1><i class="fas fa-file-medical"></i> Medical Reports</h1>
+      <p class="subtitle">Analyze and summarize medical reports with intelligent categorization</p>
+
+      <div class="report-section">
+        <div class="input-area">
+          <div class="form-group">
+            <label for="reportType"><i class="fas fa-list"></i> Report Type</label>
+            <select id="reportType" [(ngModel)]="reportType" class="select-input">
+              <option value="">Select Report Type</option>
+              <option value="Lab Report">Lab Report</option>
+              <option value="Medical History">Medical History</option>
+              <option value="Prescription">Prescription</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reportText"><i class="fas fa-keyboard"></i> Report Content</label>
+            <textarea id="reportText" 
+                      [(ngModel)]="reportText"
+                      class="textarea-input"
+                      placeholder="Paste or type the medical report content here..."
+                      rows="10"></textarea>
+          </div>
+
+          <button class="analyze-btn" (click)="analyzeReport()" [disabled]="!reportText || !reportType || isLoading()">
+            <i class="fas fa-magic"></i> Analyze Report
+          </button>
+        </div>
+
+        <div class="results-area" *ngIf="analysisResult()">
+          <div *ngIf="!isLoading()" class="result-card">
+            <h2><i class="fas fa-check-circle"></i> Analysis Summary</h2>
+            <div class="summary-content">
+              <div class="summary-item" *ngIf="analysisResult().summary">
+                <h3>Summary</h3>
+                <p>{{ analysisResult().summary }}</p>
+              </div>
+              <div class="summary-item" *ngIf="analysisResult().key_findings && analysisResult().key_findings.length > 0">
+                <h3><i class="fas fa-star"></i> Key Findings</h3>
+                <ul>
+                  <li *ngFor="let finding of analysisResult().key_findings">{{ finding }}</li>
+                </ul>
+              </div>
+              <div class="summary-item" *ngIf="analysisResult().recommendations && analysisResult().recommendations.length > 0">
+                <h3><i class="fas fa-list-check"></i> Recommendations</h3>
+                <ul>
+                  <li *ngFor="let rec of analysisResult().recommendations">{{ rec }}</li>
+                </ul>
+              </div>
+            </div>
+            <button class="new-analysis-btn" (click)="resetAnalysis()">
+              <i class="fas fa-plus"></i> New Analysis
+            </button>
+          </div>
+          <div *ngIf="isLoading()" class="loading">
+            <div class="spinner"></div>
+            <p>Analyzing report...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  

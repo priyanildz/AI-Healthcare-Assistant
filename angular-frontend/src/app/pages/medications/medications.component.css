@@ -1,0 +1,117 @@
+:host {
+  --primary: #6366f1;
+  --secondary: #7c3aed;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --text-main: #4f46e5;
+  --text-heading: #4338ca;
+  --border-color: rgba(99, 102, 241, 0.15);
+  --shadow: 0 8px 20px rgba(99, 102, 241, 0.12);
+  display: block;
+}
+
+/* We use :host-context to look up the tree for the dark theme attribute.
+   This is the most reliable way in Angular to detect the theme.
+*/
+:host-context([data-theme="dark"]) {
+  --primary: #8b5cf6;
+  --secondary: #c4b5fd;
+  --bg-card: #110e1f; /* Deep violet-black - Matches Sidebar */
+  --bg-input: #0b0a12; /* Darkest layer */
+  --text-main: #ddd6fe;
+  --text-heading: #ede9fe;
+  --border-color: #2e1065; 
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* Also adding standard selector just in case */
+[data-theme="dark"] {
+  --bg-card: #110e1f !important;
+  --bg-input: #0b0a12 !important;
+}
+
+.medications-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--primary);
+  margin: 0 0 10px 0;
+}
+
+.subtitle {
+  color: var(--text-main);
+  margin-bottom: 40px;
+}
+
+.medication-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* The Box in your screenshot */
+.input-area, .result-card {
+  /* We use background-color and !important to kill the white background */
+  background-color: var(--bg-card) !important; 
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 30px;
+  transition: all 0.3s ease;
+  color: var(--text-main);
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* The Input fields inside the white box */
+.input-field, .textarea-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-input) !important;
+  color: var(--text-main) !important;
+  outline: none;
+}
+
+.input-field::placeholder, .textarea-input::placeholder {
+  color: rgba(167, 139, 250, 0.4);
+}
+
+.analyze-btn, .new-analysis-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: #ffffff !important; /* Force text to white for the button */
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.analyze-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* List/Sentiment box overrides */
+.sentiment-box, .actual-use-box, .review-summary-box, 
+.key-points-box, .confidence-box {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary);
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 12px;
+}

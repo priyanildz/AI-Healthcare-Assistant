@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+	background-color: #050507;
+	color: #f5f3ff;
+}
+
+html[data-theme="dark"] body {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}

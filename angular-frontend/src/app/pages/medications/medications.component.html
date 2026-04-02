@@ -1,0 +1,74 @@
+    <div class="medications-container">
+      <h1><i class="fas fa-pills"></i> Medication Reviews</h1>
+      <p class="subtitle">Analyze medication reviews and get therapeutic use information</p>
+
+      <div class="medication-section">
+        <div class="input-area">
+          <div class="form-group">
+            <label for="medicationName"><i class="fas fa-capsules"></i> Medication Name</label>
+            <input type="text" 
+                   id="medicationName"
+                   [(ngModel)]="medicationName"
+                   class="input-field"
+                   placeholder="e.g., Aspirin, Amlodipine, Metformin">
+          </div>
+
+          <div class="form-group">
+            <label for="reviewText"><i class="fas fa-comment"></i> Review or Experience</label>
+            <textarea id="reviewText"
+                      [(ngModel)]="reviewText"
+                      class="textarea-input"
+                      placeholder="Describe your experience with this medication..."
+                      rows="10"></textarea>
+          </div>
+
+          <button class="analyze-btn" (click)="analyzeMedication()" [disabled]="!reviewText || !medicationName || isLoading()">
+            <i class="fas fa-vial"></i> Analyze Review
+          </button>
+        </div>
+
+        <div class="results-area" *ngIf="analysisResult()">
+          <div *ngIf="!isLoading()" class="result-card">
+            <h2><i class="fas fa-check-circle"></i> Analysis Result</h2>
+            
+            <div class="result-content">
+              <div class="sentiment-box" [ngClass]="getSentimentClass()">
+                <h3>Sentiment Analysis</h3>
+                <div class="sentiment-value">{{ analysisResult().sentiment }}</div>
+                <p class="sentiment-score">Score: {{ (analysisResult().sentiment_score * 100).toFixed(1) }}%</p>
+              </div>
+
+              <div class="actual-use-box" *ngIf="analysisResult().actual_use">
+                <h3><i class="fas fa-prescription-bottle"></i> Therapeutic Use</h3>
+                <p>{{ analysisResult().actual_use }}</p>
+              </div>
+
+              <div class="review-summary-box" *ngIf="analysisResult().review_summary">
+                <h3><i class="fas fa-clipboard"></i> Summary</h3>
+                <p>{{ analysisResult().review_summary }}</p>
+              </div>
+
+              <div class="key-points-box" *ngIf="analysisResult().key_points && analysisResult().key_points.length > 0">
+                <h3><i class="fas fa-list"></i> Key Points</h3>
+                <ul>
+                  <li *ngFor="let point of analysisResult().key_points">{{ point }}</li>
+                </ul>
+              </div>
+
+              <div class="confidence-box">
+                <p><strong>Analysis Confidence:</strong> {{ (analysisResult().confidence * 100).toFixed(1) }}%</p>
+              </div>
+            </div>
+
+            <button class="new-analysis-btn" (click)="resetAnalysis()">
+              <i class="fas fa-plus"></i> New Review
+            </button>
+          </div>
+          <div *ngIf="isLoading()" class="loading">
+            <div class="spinner"></div>
+            <p>Analyzing medication review...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
