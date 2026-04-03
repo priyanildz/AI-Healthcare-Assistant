@@ -12,8 +12,3 @@ Legacy UI has been removed.
 ## Running
 - Backend: cd backend && python app.py
 - Frontend: cd angular-frontend && npm start
-
-## Deployment Readiness
-- Angular production build works.
-- Vercel config exists in angular-frontend/vercel.json.
-- Set correct production backend URL in angular-frontend/src/environments/environment.prod.ts.

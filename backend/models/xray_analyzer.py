@@ -94,14 +94,21 @@ class XrayAnalyzer:
                 findings = self._generate_uncertain_findings(confidence_score, all_probabilities)
             else:
                 findings = self._generate_findings(classification, confidence_score)
+
+            recommendations = self._generate_recommendations(classification, low_confidence or near_tie)
             
             return {
                 "status": "success",
                 "image_path": image_path,
                 "classification": classification,
                 "confidence_score": float(confidence_score),
+                "confidence": float(confidence_score),
                 "findings": findings,
+                "finding": findings,
+                "clinical_note": findings,
+                "recommendations": recommendations,
                 "all_probabilities": all_probabilities
+                ,"probabilities": all_probabilities
             }
             
         except Exception as e:
@@ -111,7 +118,13 @@ class XrayAnalyzer:
                 "image_path": image_path,
                 "classification": "Error",
                 "confidence_score": 0.0,
+                "confidence": 0.0,
                 "findings": "Unable to process image"
+                ,"finding": "Unable to process image",
+                "clinical_note": "Unable to process image",
+                "recommendations": [],
+                "all_probabilities": {},
+                "probabilities": {}
             }
     
     def _generate_findings(self, classification: str, confidence: float) -> str:
@@ -162,6 +175,23 @@ class XrayAnalyzer:
             "- Consider CT scan if clinically indicated\n"
             "- Correlate with symptoms"
         )
+
+    def _generate_recommendations(self, classification: str, uncertain: bool) -> list:
+        if uncertain:
+            return [
+                "Radiologist review required",
+                "Consider CT scan if clinically indicated",
+                "Correlate with symptoms",
+            ]
+
+        recommendations_map = {
+            "Normal": ["No urgent radiology follow-up is suggested based on this model output."],
+            "Pneumonia": ["Clinical evaluation is recommended.", "Correlate with fever, cough, and oxygen levels."],
+            "COVID-19": ["Clinical correlation is recommended.", "Consider isolation and local protocols if symptomatic."],
+            "Tuberculosis": ["Further specialist review is recommended.", "Follow local infectious disease guidance."],
+            "Abnormal": ["Further medical review is recommended."],
+        }
+        return recommendations_map.get(classification, ["Further medical review is recommended."])
     
     def batch_analyze(self, image_paths: list) -> list:
         """

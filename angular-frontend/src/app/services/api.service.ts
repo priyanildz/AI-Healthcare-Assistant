@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,28 +15,36 @@ export class ApiService {
   // X-ray Analysis
   analyzeXray(file: File): Observable<any> {
     const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post(`${this.baseUrl}/xrays/analyze`, formData);
+    formData.append('image', file);
+    return this.http.post<any>(`${this.baseUrl}/xrays/analyze`, formData).pipe(
+      map((response) => response?.data ?? response)
+    );
   }
 
   // Medical Reports
   analyzeReport(text: string, reportType: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/reports/summarize-file`, {
-      text,
+    return this.http.post<any>(`${this.baseUrl}/reports/summarize`, {
+      report_text: text,
       report_type: reportType
-    });
+    }).pipe(
+      map((response) => response?.data ?? response)
+    );
   }
 
   // Medication Reviews
   analyzeMedicationReview(reviewText: string, medicationName: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/medications/analyze-review`, {
+    return this.http.post<any>(`${this.baseUrl}/medications/analyze-review`, {
       review_text: reviewText,
       medication_name: medicationName
-    });
+    }).pipe(
+      map((response) => response?.data ?? response)
+    );
   }
 
   // Health Check
   healthCheck(): Observable<any> {
-    return this.http.get(`${this.baseUrl.replace('/api', '')}/health`);
+    return this.http.get<any>(`${this.baseUrl.replace('/api', '')}/health`).pipe(
+      map((response) => response?.data ?? response)
+    );
   }
 }

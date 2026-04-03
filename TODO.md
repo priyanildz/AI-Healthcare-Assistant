@@ -13,5 +13,3 @@
 - [ ] Add unit/integration tests
 - [ ] Add Docker setup
 - [ ] Add CI pipeline
-- [ ] Prepare backend production deployment
-- [ ] Finalize Vercel + backend environment variables

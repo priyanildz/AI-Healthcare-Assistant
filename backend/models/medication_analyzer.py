@@ -239,9 +239,13 @@ Respond ONLY in JSON format with keys: sentiment_score, side_effects, effectiven
                 "medication_name": medication_name,
                 "actual_use": result.get("actual_use", self._infer_actual_use(medication_name, review_text)),
                 "sentiment_score": float(result.get("sentiment_score", 0)),
+                "sentiment": self._sentiment_label(float(result.get("sentiment_score", 0))),
                 "side_effects": result.get("side_effects", []),
                 "effectiveness_rating": float(result.get("effectiveness_rating", 0)),
                 "impression": result.get("impression", ""),
+                "review_summary": result.get("impression", ""),
+                "key_points": self._build_key_points(result.get("impression", ""), result.get("side_effects", [])),
+                "confidence": self._confidence_from_sentiment(float(result.get("sentiment_score", 0))),
                 "recommendation": result.get("recommendation", ""),
             }
         except Exception as e:
@@ -251,9 +255,13 @@ Respond ONLY in JSON format with keys: sentiment_score, side_effects, effectiven
                 "medication_name": medication_name,
                 "actual_use": "",
                 "sentiment_score": 0,
+                "sentiment": "neutral",
                 "side_effects": [],
                 "effectiveness_rating": 0,
                 "impression": "",
+                "review_summary": "",
+                "key_points": [],
+                "confidence": 0.0,
                 "recommendation": "",
             }
 
@@ -308,9 +316,13 @@ Respond ONLY in JSON format with keys: sentiment_score, side_effects, effectiven
                 "medication_name": medication_name,
                 "actual_use": result.get("actual_use", self._infer_actual_use(medication_name, review_text)),
                 "sentiment_score": float(result.get("sentiment_score", 0)),
+                "sentiment": self._sentiment_label(float(result.get("sentiment_score", 0))),
                 "side_effects": result.get("side_effects", []),
                 "effectiveness_rating": float(result.get("effectiveness_rating", 0)),
                 "impression": result.get("impression", ""),
+                "review_summary": result.get("impression", ""),
+                "key_points": self._build_key_points(result.get("impression", ""), result.get("side_effects", [])),
+                "confidence": self._confidence_from_sentiment(float(result.get("sentiment_score", 0))),
                 "recommendation": result.get("recommendation", ""),
             }
         except Exception as e:
@@ -324,9 +336,13 @@ Respond ONLY in JSON format with keys: sentiment_score, side_effects, effectiven
                 "medication_name": medication_name,
                 "actual_use": "",
                 "sentiment_score": 0,
+                "sentiment": "neutral",
                 "side_effects": [],
                 "effectiveness_rating": 0,
                 "impression": "",
+                "review_summary": "",
+                "key_points": [],
+                "confidence": 0.0,
                 "recommendation": ""
             }
 
@@ -371,11 +387,33 @@ Respond ONLY in JSON format with keys: sentiment_score, side_effects, effectiven
             "medication_name": medication_name,
             "actual_use": self._infer_actual_use(medication_name, review_text),
             "sentiment_score": float(sentiment_score),
+            "sentiment": self._sentiment_label(float(sentiment_score)),
             "side_effects": side_effects,
             "effectiveness_rating": float(effectiveness_rating),
             "impression": impression,
+            "review_summary": impression,
+            "key_points": self._build_key_points(impression, side_effects),
+            "confidence": self._confidence_from_sentiment(float(sentiment_score)),
             "recommendation": recommendation,
         }
+
+    def _sentiment_label(self, score: float) -> str:
+        if score > 0.3:
+            return "positive"
+        if score < -0.3:
+            return "negative"
+        return "neutral"
+
+    def _confidence_from_sentiment(self, score: float) -> float:
+        return round(min(1.0, 0.5 + abs(score) * 0.5), 2)
+
+    def _build_key_points(self, impression: str, side_effects: List[str]) -> List[str]:
+        points = []
+        if impression:
+            points.append(impression)
+        if side_effects:
+            points.append("Reported side effects: " + ", ".join(side_effects))
+        return points
         
     def analyze_review(self, review_text: str, medication_name: str) -> Dict[str, Any]:
         """

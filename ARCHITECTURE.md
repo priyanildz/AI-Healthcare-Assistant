@@ -20,7 +20,3 @@ Browser (Angular) --> Flask REST API --> AI/ML services + Database
 3. Backend validates input and runs model logic.
 4. Backend stores/returns analysis.
 5. UI renders results.
-
-## Deployment
-- Frontend deploy target: Vercel (angular-frontend/vercel.json)
-- Backend deploy target: any Python host (Render/Railway/Azure/AWS)

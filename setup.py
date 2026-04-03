@@ -43,10 +43,7 @@ def verify_structure():
     required_dirs = [
         'backend',
         'backend/models',
-        'angular-frontend',
-        'data',
-        'data/sample_reports',
-        'data/sample_xrays'
+        'angular-frontend'
     ]
     
     required_files = [
