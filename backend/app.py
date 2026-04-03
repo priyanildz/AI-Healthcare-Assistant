@@ -19,7 +19,15 @@ load_dotenv()
 app = Flask(__name__)
 app.config.from_object(config[os.getenv('FLASK_ENV', 'development')])
 # CORS(app)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:4200", "http://127.0.0.1:4200"]}})
+frontend_url = (os.getenv('FRONTEND_URL') or '').strip()
+allowed_origins = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+    r"https://.*\.vercel\.app",
+]
+if frontend_url:
+    allowed_origins.append(frontend_url)
+CORS(app, resources={r"/*": {"origins": allowed_origins}})
 
 # Initialize AI models
 summarizer = ReportSummarizer()
