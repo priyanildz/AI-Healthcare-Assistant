@@ -19,7 +19,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config.from_object(config[os.getenv('FLASK_ENV', 'development')])
 # CORS(app)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:4200", "https://your-angular-app.onrender.com"]}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:4200", "http://127.0.0.1:4200"]}})
 
 # Initialize AI models
 summarizer = ReportSummarizer()
