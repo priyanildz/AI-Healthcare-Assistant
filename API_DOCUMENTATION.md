@@ -1,358 +1,179 @@
-"""
-API Documentation and Usage Examples
-"""
+# API Documentation
 
-# Medical Report Analysis API
-# ==========================
+Base URL for local development: `http://127.0.0.1:5000`
 
-## Endpoint: POST /api/reports/summarize
+## Health Check
 
-### Description:
-Analyze a medical report and generate summary, key findings, and recommendations
+### `GET /health`
+Returns the service status and loaded components.
 
-### Request:
+Example response:
 ```json
 {
-    "report_text": "Full medical report text here...",
-    "report_type": "pathology|radiology|laboratory|clinical_notes",  // optional, default: "general"
-    "patient_id": "P12345"  // optional
+  "status": "healthy",
+  "timestamp": "2026-04-03T12:00:00.000000",
+  "services": {
+    "report_summarizer": "ready",
+    "medication_analyzer": "ready",
+    "xray_analyzer": "ready"
+  }
 }
 ```
 
-### Response (Success - 200):
+## Provider Debug
+
+### `GET /debug/provider`
+Returns runtime provider details for local troubleshooting.
+
+Example response:
 ```json
 {
+  "ai_provider_env": "local",
+  "report_provider": "local",
+  "med_provider": "local",
+  "report_file": "backend/models/report_summarizer.py",
+  "med_file": "backend/models/medication_analyzer.py",
+  "debug_has_display_order": true,
+  "debug_has_colon_scan": true,
+  "cwd": "D:\\02 Course\\01 Project\\AI_Healthcare_Project\\backend"
+}
+```
+
+## Medical Report Analysis
+
+### `POST /api/reports/summarize`
+Analyzes pasted report text.
+
+Request body:
+```json
+{
+  "report_text": "Patient has elevated WBC...",
+  "report_type": "laboratory"
+}
+```
+
+Success response:
+```json
+{
+  "status": "success",
+  "data": {
     "status": "success",
-    "data": {
-        "status": "success",
-        "summary": "Concise summary of the report...",
-        "key_findings": [
-            "Finding 1",
-            "Finding 2",
-            "Finding 3"
-        ],
-        "abnormalities": [
-            "Abnormality 1",
-            "Abnormality 2"
-        ],
-        "recommendations": [
-            "Recommendation 1",
-            "Recommendation 2"
-        ],
-        "report_type": "pathology"
+    "summary": "...",
+    "key_findings": ["..."],
+    "abnormalities": ["..."],
+    "recommendations": ["..."],
+    "patient_friendly_explanation": "...",
+    "severity_level": "low",
+    "possible_causes": [],
+    "suggested_next_tests": [],
+    "sections": {
+      "summary": "...",
+      "key_issues": [],
+      "abnormal_values": [],
+      "recommendations": []
     },
-    "database_id": "report_abc123xyz"
+    "report_type": "laboratory"
+  }
 }
 ```
 
-### Response (Error - 500):
+### `POST /api/reports/summarize-file`
+Analyzes an uploaded image or PDF report when file-based input is needed.
+
+Form data:
+- `file` required
+- `report_type` optional
+
+## Medication Review Analysis
+
+### `POST /api/medications/analyze-review`
+Analyzes a single medication review.
+
+Request body:
 ```json
 {
-    "status": "error",
-    "message": "Error message describing what went wrong"
+  "medication_name": "Amlodipine",
+  "review_text": "This helped control my blood pressure..."
 }
 ```
 
-### cURL Example:
-```bash
-curl -X POST http://localhost:5000/api/reports/summarize \
-  -H "Content-Type: application/json" \
-  -d '{
-    "report_text": "Patient presents with elevated WBC...",
-    "report_type": "laboratory",
-    "patient_id": "P001"
-  }'
-```
-
-### Python Example:
-```python
-import requests
-
-data = {
-    "report_text": "Your medical report text...",
-    "report_type": "pathology",
-    "patient_id": "P12345"
-}
-
-response = requests.post(
-    'http://localhost:5000/api/reports/summarize',
-    json=data
-)
-
-print(response.json())
-```
-
----
-
-# Medication Review Analysis API
-# ==============================
-
-## Endpoint: POST /api/medications/analyze-review
-
-### Description:
-Analyze a single medication review for sentiment, side effects, and effectiveness
-
-### Request:
+Success response:
 ```json
 {
-    "medication_name": "Aspirin",
-    "review_text": "Great medication for headaches...",
-    "patient_id": "P12345"  // optional
-}
-```
-
-### Response (Success - 200):
-```json
-{
+  "status": "success",
+  "data": {
     "status": "success",
-    "data": {
-        "status": "success",
-        "medication_name": "Aspirin",
-        "sentiment_score": 0.85,  // -1 to 1
-        "side_effects": [
-            "Stomach upset",
-            "Mild headache"
-        ],
-        "effectiveness_rating": 4.5,  // 0-5
-        "impression": "Positive patient experience with medication...",
-        "recommendation": "continue"
-    },
-    "database_id": "review_abc123xyz"
+    "medication_name": "Amlodipine",
+    "actual_use": "Treats high blood pressure (hypertension).",
+    "sentiment_score": 0.8,
+    "sentiment": "positive",
+    "side_effects": [],
+    "effectiveness_rating": 4.5,
+    "impression": "...",
+    "review_summary": "...",
+    "key_points": ["..."],
+    "confidence": 0.9,
+    "recommendation": "continue"
+  }
 }
 ```
 
----
+### `POST /api/medications/aggregate-reviews`
+Analyzes multiple reviews for one medication.
 
-## Endpoint: POST /api/medications/aggregate-reviews
-
-### Description:
-Analyze multiple medication reviews and generate aggregate statistics
-
-### Request:
+Request body:
 ```json
 {
-    "reviews": [
-        {
-            "medication_name": "Aspirin",
-            "text": "Great for pain relief..."
-        },
-        {
-            "medication_name": "Aspirin",
-            "text": "Caused stomach issues..."
-        }
-    ]
-}
-```
-
-### Response (Success - 200):
-```json
-{
-    "status": "success",
-    "data": {
-        "total_reviews_analyzed": 2,
-        "average_sentiment": 0.42,
-        "average_effectiveness": 4.0,
-        "most_common_side_effects": [
-            ["Stomach upset", 1],
-            ["Nausea", 1]
-        ],
-        "sentiment_distribution": {
-            "positive": 1,
-            "neutral": 0,
-            "negative": 1
-        },
-        "detailed_analyses": [ /* ... */ ]
+  "reviews": [
+    {
+      "medication_name": "Amlodipine",
+      "text": "Worked well for my BP"
     }
+  ]
 }
 ```
 
----
+## X-Ray Analysis
 
-# X-Ray Analysis API
-# ==================
+### `POST /api/xrays/analyze`
+Analyzes an uploaded X-ray image.
 
-## Endpoint: POST /api/xrays/analyze
+Form data:
+- `image` required
+- `body_part` optional
 
-### Description:
-Analyze an X-ray image for abnormalities and classification
-
-### Request:
-```
-Content-Type: multipart/form-data
-
-Parameters:
-- image (file): X-ray image file (jpg, png, bmp)
-- patient_id (string, optional): Patient identifier
-- body_part (string, optional): Body part analyzed (chest, arm, leg, etc.)
-```
-
-### Response (Success - 200):
+Success response:
 ```json
 {
+  "status": "success",
+  "data": {
     "status": "success",
-    "data": {
-        "status": "success",
-        "image_path": "/tmp/xray_xyz.jpg",
-        "classification": "Normal",  // Normal, Pneumonia, COVID-19, TB, Abnormal
-        "confidence_score": 0.95,
-        "findings": "No significant abnormalities detected...",
-        "all_probabilities": {
-            "Normal": 0.95,
-            "Pneumonia": 0.03,
-            "COVID-19": 0.01,
-            "Tuberculosis": 0.01,
-            "Abnormal": 0.00
-        }
-    },
-    "database_id": "xray_abc123xyz"
-}
-```
-
-### cURL Example:
-```bash
-curl -X POST http://localhost:5000/api/xrays/analyze \
-  -F "image=@/path/to/xray.jpg" \
-  -F "patient_id=P001" \
-  -F "body_part=chest"
-```
-
-### Python Example:
-```python
-import requests
-
-with open('xray.jpg', 'rb') as f:
-    files = {'image': f}
-    data = {
-        'patient_id': 'P001',
-        'body_part': 'chest'
-    }
-    response = requests.post(
-        'http://localhost:5000/api/xrays/analyze',
-        files=files,
-        data=data
-    )
-
-print(response.json())
-```
-
----
-
-# Retrieve Results API
-# ====================
-
-## Endpoint: GET /api/reports/<report_id>
-
-### Description:
-Retrieve a previously analyzed medical report
-
-### Response (Success - 200):
-```json
-{
-    "id": "report_abc123xyz",
-    "original_text": "Full original report...",
-    "summary": "Summary...",
-    "key_findings": [...],
-    "report_type": "pathology",
-    "patient_id": "P001",
-    "created_at": "2024-03-21T10:30:00"
-}
-```
-
----
-
-## Endpoint: GET /api/xrays/<xray_id>
-
-### Description:
-Retrieve previously analyzed X-ray results
-
-### Response (Success - 200):
-```json
-{
-    "id": "xray_abc123xyz",
+    "image_path": "/tmp/xray_1234.jpg",
     "classification": "Normal",
     "confidence_score": 0.95,
+    "confidence": 0.95,
     "findings": "...",
-    "body_part": "chest",
-    "patient_id": "P001",
-    "created_at": "2024-03-21T10:30:00"
-}
-```
-
----
-
-# System Health Check API
-# =======================
-
-## Endpoint: GET /health
-
-### Description:
-Check if the API and all services are running
-
-### Response (Success - 200):
-```json
-{
-    "status": "healthy",
-    "timestamp": "2024-03-21T10:30:00",
-    "services": {
-        "database": "connected",
-        "report_summarizer": "ready",
-        "medication_analyzer": "ready",
-        "xray_analyzer": "ready"
+    "finding": "...",
+    "clinical_note": "...",
+    "recommendations": ["..."],
+    "all_probabilities": {
+      "Normal": 0.95
+    },
+    "probabilities": {
+      "Normal": 0.95
     }
+  }
 }
 ```
 
----
+## Error Responses
 
-# HTTP Status Codes
-# =================
-
-- 200 OK: Request successful
-- 400 Bad Request: Invalid input parameters
-- 401 Unauthorized: Authentication required (future feature)
-- 404 Not Found: Resource not found
-- 500 Internal Server Error: Server error during processing
-- 503 Service Unavailable: Service temporarily unavailable
-
----
-
-# Error Handling
-# ==============
-
-All error responses follow this format:
-
+Validation errors return HTTP 400 with a JSON body like:
 ```json
-{
-    "status": "error",
-    "message": "Human-readable error message"
-}
+{ "error": "report_text is required" }
 ```
 
-Common errors:
-- Missing required fields
-- Invalid file format (for X-ray)
-- API rate limit exceeded
-- OpenAI API failure
-- Database connection error
-
----
-
-# Rate Limiting (Future)
-# ======================
-
-Current: No rate limiting
-Future: 
-- 100 requests per minute per IP
-- 1000 requests per hour per API key
-- Rate limit headers in response
-
----
-
-# Authentication (Future)
-# =======================
-
-Will use JWT tokens:
-
-```
-Authorization: Bearer <jwt_token>
+Unexpected errors return HTTP 500 with a JSON body like:
+```json
+{ "error": "Internal server error" }
 ```

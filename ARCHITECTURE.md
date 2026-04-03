@@ -2,21 +2,21 @@
 
 ## Overview
 
-Browser (Angular) --> Flask REST API --> AI/ML services + Database
+Angular frontend -> Flask REST API -> AI model services
 
 ## Frontend
-- Angular application in angular-frontend/
+- Angular application in `angular-frontend/`
 - Feature pages: Home, X-Ray, Reports, Medications
-- Theme support (light/dark)
+- Theme support: light and dark mode
 
 ## Backend
-- Flask API in backend/app.py
-- Model modules in backend/models/
-- Stateless backend (no persistence layer)
+- Flask API in `backend/app.py`
+- Model modules in `backend/models/`
+- Stateless backend, no database or persistence layer
 
 ## Data Flow
-1. User submits input from Angular UI.
-2. Angular calls Flask endpoints under /api/*.
-3. Backend validates input and runs model logic.
-4. Backend stores/returns analysis.
-5. UI renders results.
+1. User enters report text, review text, or an image in the Angular UI.
+2. Angular sends requests to Flask under `/api/*`.
+3. Flask validates input and calls the model services.
+4. The API returns analysis results as JSON.
+5. The UI renders the returned analysis.

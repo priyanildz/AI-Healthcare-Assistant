@@ -6,6 +6,8 @@
 - [x] Dark/light mode toggle
 - [x] Feature-folder page structure
 - [x] Removed legacy frontend
+- [x] Removed sample `data/` folder
+- [x] Updated local setup flow
 
 ## Next Priorities
 - [ ] Add authentication/authorization

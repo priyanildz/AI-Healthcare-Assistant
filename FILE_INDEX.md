@@ -1,16 +1,19 @@
 # File Index
 
 ## Root
-- README.md: project overview
-- QUICKSTART.md: fast setup
-- ARCHITECTURE.md: system design
+- README.md: project overview and local setup
+- QUICKSTART.md: step-by-step local run guide
+- ARCHITECTURE.md: system design overview
 - API_DOCUMENTATION.md: API reference
-- setup.py: setup helper script
+- setup.py: setup and structure check helper
 - requirements.txt: Python dependencies
+- .env.example: environment template
+- .gitignore: ignored files and folders
 
 ## Backend
 - backend/app.py: Flask server and routes
-- backend/models/: AI/ML service modules
+- backend/config.py: runtime configuration
+- backend/models/: AI/model service modules
 
 ## Frontend
 - angular-frontend/: Angular app
@@ -18,5 +21,5 @@
   - src/app/pages/: feature pages
   - src/app/services/: API and theme services
 
-## Data
-- data/: sample/supporting project data
+## Removed
+- data/: sample data folder removed from the repo

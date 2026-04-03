@@ -6,6 +6,7 @@ Run this script to set up the project environment
 
 import os
 import sys
+import shutil
 from pathlib import Path
 
 def create_env_file():
@@ -18,7 +19,7 @@ def create_env_file():
         return
     
     if env_example_path.exists():
-        env_example_path.rename(env_path)
+        shutil.copyfile(env_example_path, env_path)
         print("✓ Created .env from template")
     else:
         # Create minimal .env

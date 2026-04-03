@@ -7,16 +7,16 @@ pip install -r requirements.txt
 
 ## 2. Configure Environment
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
-Edit .env and set OPENAI_API_KEY.
+Edit `.env` and set the API keys you want to use.
 
 ## 3. Run Backend
 ```bash
 cd backend
 python app.py
 ```
-Expected: http://127.0.0.1:5000
+Expected: `http://127.0.0.1:5000`
 
 ## 4. Run Angular Frontend
 ```bash
@@ -24,7 +24,7 @@ cd angular-frontend
 npm install
 npm start
 ```
-Expected: http://localhost:4200 (or assigned port)
+Expected: `http://localhost:4200` (or the port shown by Angular)
 
 ## 5. Health Check
 ```bash
@@ -32,6 +32,6 @@ curl http://localhost:5000/health
 ```
 
 ## Troubleshooting
-- Port busy: stop process or use a different port.
-- Missing module: reinstall dependencies.
-- API errors in UI: check environment.prod.ts / backend URL.
+- Port busy: stop the process already using the port and start again.
+- Missing Python package: reinstall with `pip install -r requirements.txt`.
+- Frontend API errors: confirm the backend is running and the API base URL points to `http://127.0.0.1:5000/api`.
