@@ -7,16 +7,4 @@ gunicorn==22.0.0
 # AI/ML Libraries
 google-generativeai>=0.8.3
 groq>=0.11.0
-torch==2.10.0
-torchvision==0.25.0
 Pillow>=11.0.0
-numpy>=2.0.0
-pandas>=2.2.0
-
-# Medical Imaging
-scikit-image>=0.25.0
-opencv-python>=4.10.0
-
-# Utilities
-requests==2.31.0
-python-multipart==0.0.6

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Angular frontend -> Flask REST API -> AI model services
+Angular frontend -> Flask REST API -> external AI vision/text services
 
 ## Frontend
 - Angular application in `angular-frontend/`
@@ -13,6 +13,8 @@ Angular frontend -> Flask REST API -> AI model services
 - Flask API in `backend/app.py`
 - Model modules in `backend/models/`
 - Stateless backend, no database or persistence layer
+- Report and medication analysis use Gemini/Groq APIs
+- X-ray analysis uses an external vision API instead of a local Torch model
 
 ## Data Flow
 1. User enters report text, review text, or an image in the Angular UI.

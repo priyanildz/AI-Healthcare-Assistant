@@ -9,7 +9,7 @@ pip install -r requirements.txt
 ```bash
 copy .env.example .env
 ```
-Edit `.env` and set the API keys you want to use.
+Edit `.env` and set the Gemini and Groq API keys you want to use.
 
 ## 3. Run Backend
 ```bash
@@ -35,3 +35,4 @@ curl http://localhost:5000/health
 - Port busy: stop the process already using the port and start again.
 - Missing Python package: reinstall with `pip install -r requirements.txt`.
 - Frontend API errors: confirm the backend is running and the API base URL points to `http://127.0.0.1:5000/api`.
+- Render OOM: verify you are using the external X-ray vision flow and not a local Torch model.

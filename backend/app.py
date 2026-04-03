@@ -239,20 +239,27 @@ def analyze_xray():
         # Save temporary file
         temp_path = os.path.join(tempfile.gettempdir(), f"xray_{uuid.uuid4().hex[:8]}.jpg")
         file.save(temp_path)
-        
-        # Analyze X-ray
-        analysis = xray_analyzer.analyze_xray(temp_path)
-        
-        if analysis['status'] == 'success':
-            return jsonify({
-                "status": "success",
-                "data": analysis
-            })
-        else:
+
+        try:
+            # Analyze X-ray with an external vision provider.
+            analysis = xray_analyzer.analyze_xray(temp_path)
+
+            if analysis['status'] == 'success':
+                return jsonify({
+                    "status": "success",
+                    "data": analysis
+                })
+
             return jsonify({
                 "status": "error",
                 "message": analysis.get('message', 'Unknown error')
             }), 500
+        finally:
+            if os.path.exists(temp_path):
+                try:
+                    os.remove(temp_path)
+                except OSError:
+                    pass
             
     except Exception as e:
         return jsonify({"error": str(e)}), 500

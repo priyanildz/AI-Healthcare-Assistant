@@ -24,8 +24,15 @@ def create_env_file():
     else:
         # Create minimal .env
         with open(env_path, 'w') as f:
-            f.write("""# OpenAI Configuration
-OPENAI_API_KEY=your_api_key_here
+            f.write("""# Gemini / Groq configuration
+AI_PROVIDER=gemini
+BACKUP_PROVIDER=groq
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-1.5-flash
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_MODEL=llama-3.1-8b-instant
+GROQ_VISION_MODEL=meta-llama/llama-4-scout-17b-16e-instruct
+GROQ_PROJECT=AI-healthcare
 
 # Flask Configuration
 FLASK_ENV=development
@@ -54,7 +61,8 @@ def verify_structure():
         'backend/models/medication_analyzer.py',
         'backend/models/xray_analyzer.py',
         'angular-frontend/package.json',
-        'requirements.txt',
+        '.env.example',
+        'backend/requirements.txt',
         'README.md'
     ]
     
@@ -98,7 +106,7 @@ def main():
     print("Setup completed!")
     print("=" * 60)
     print("\nNext steps:")
-    print("1. Edit .env and set OPENAI_API_KEY")
+    print("1. Edit .env and set your Gemini/Groq API keys")
     print("2. Run backend: cd backend && python app.py")
     print("3. Run frontend: cd angular-frontend && npm install && npm start")
     print("4. Open http://localhost:4200 in your browser")

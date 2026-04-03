@@ -2,6 +2,8 @@
 
 Base URL for local development: `http://127.0.0.1:5000`
 
+This backend uses Gemini/Groq for report and medication analysis, and an external vision API for X-ray analysis.
+
 ## Health Check
 
 ### `GET /health`
@@ -136,7 +138,7 @@ Request body:
 ## X-Ray Analysis
 
 ### `POST /api/xrays/analyze`
-Analyzes an uploaded X-ray image.
+Analyzes an uploaded X-ray image using an external vision provider.
 
 Form data:
 - `image` required
@@ -165,6 +167,8 @@ Success response:
   }
 }
 ```
+
+The probability values are model estimates returned by the vision provider and are intended for UI display, not clinical decision-making.
 
 ## Error Responses
 
