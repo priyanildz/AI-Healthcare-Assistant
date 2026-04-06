@@ -1,9 +1,45 @@
-# AI Healthcare Assistant
+# 🏥 AI Healthcare Assistant
 
-AI-powered healthcare project with:
-- Flask backend API
-- Angular frontend app
-- Models for report summarization, medication review analysis, and X-ray analysis
+An AI-powered healthcare assistant that helps users analyze medical information, understand symptoms, and get intelligent insights using data-driven techniques.
+
+---
+
+## Live Demo
+
+🔗 https://ai-healthcare-assistant-kokj.vercel.app/
+
+---
+
+## About the Project
+
+AI Healthcare Assistant is a web-based application that uses AI and data analysis to help users:
+
+- Understand health-related information  
+- Analyze symptoms or medical data  
+- Get meaningful insights using intelligent models  
+
+It is designed to make healthcare information more accessible and easier to understand.
+
+
+---
+
+## Tech Stack
+
+- Frontend: HTML, CSS, JavaScript  
+- Backend: Python (Flask / API-based)  
+- Deployment: Vercel  
+- AI/ML: Data analysis / ML logic  
+
+---
+
+## How It Works
+
+1. User inputs data (symptoms / query)  
+2. Backend processes the input  
+3. AI/Data logic analyzes it  
+4. Results are displayed in simple format  
+
+---
 
 ## Current Stack
 - Backend: Flask stateless API using Gemini/Groq for analysis services
