@@ -1,4 +1,4 @@
-# 🏥 AI Healthcare Assistant
+# AI Healthcare Assistant
 
 An AI-powered healthcare assistant that helps users analyze medical information, understand symptoms, and get intelligent insights using data-driven techniques.
 
