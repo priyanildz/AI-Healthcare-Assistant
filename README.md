@@ -1,11 +1,11 @@
 <div align="center">
 
-# <img src="https://img.icons8.com/fluency/48/medical-doctor.png" width="40"/> AI Healthcare Project
+# <img src="https://img.icons8.com/fluency/48/medical-doctor.png" width="40"/> AI Healthcare Assistant
 
-### Disease Prediction • Machine Learning • Healthcare Analytics
+### X-Ray Analysis • Medical NLP • Intelligent Healthcare System
 
 <p>
-An AI-powered healthcare application that predicts possible diseases based on user-input symptoms using machine learning techniques.
+A multi-module AI-powered healthcare assistant that combines computer vision and natural language processing to analyze medical data, assist diagnosis, and provide intelligent insights.
 </p>
 
 <br/>
@@ -17,10 +17,10 @@ An AI-powered healthcare application that predicts possible diseases based on us
 <br/><br/>
 
 <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Machine%20Learning-Model-FF6F00?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
-<img src="https://img.shields.io/badge/Pandas-Data%20Processing-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
-<img src="https://img.shields.io/badge/NumPy-Numerical-013243?style=for-the-badge&logo=numpy&logoColor=white"/>
+<img src="https://img.shields.io/badge/Deep%20Learning-CNN-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
+<img src="https://img.shields.io/badge/NLP-Text%20Analysis-8E24AA?style=for-the-badge"/>
 <img src="https://img.shields.io/badge/Flask-Web%20App-000000?style=for-the-badge&logo=flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/UI-Modern%20Dashboard-673AB7?style=for-the-badge"/>
 <img src="https://img.shields.io/badge/License-MIT-2E7D32?style=for-the-badge"/>
 
 </div>
@@ -29,52 +29,111 @@ An AI-powered healthcare application that predicts possible diseases based on us
 
 ## Overview
 
-**AI Healthcare Project** is a machine learning-based system designed to predict potential diseases based on user-provided symptoms.
+**AI Healthcare Assistant** is an advanced AI-driven system that integrates multiple healthcare functionalities into a single platform.
 
-The application analyzes symptom patterns and maps them to likely diseases using trained models, helping users gain preliminary insights into possible health conditions.
+It combines:
+- **Computer Vision** for X-ray analysis  
+- **Natural Language Processing (NLP)** for medical reports  
+- **Sentiment & semantic analysis** for medication reviews  
+
+The application is designed with a strong focus on **safety, interpretability, and usability**, making it a comprehensive healthcare intelligence tool.
 
 ---
 
-## Screenshots
+## Screenshots & Modules
 
 <div align="center">
 
-| Symptom Input | Prediction Result |
-|---------------|------------------|
-| <img src="assets/input.png" width="400"/> | <img src="assets/output.png" width="400"/> |
+| Dashboard | Dark Mode |
+|-----------|-----------|
+| <img src="assets/home.png" width="400"/> | <img src="assets/dark.png" width="400"/> |
+
+| Medical Reports | Medication Reviews |
+|----------------|-------------------|
+| <img src="assets/medical_reports.png" width="400"/> | <img src="assets/medication.png" width="400"/> |
+
+| X-Ray Analysis |
+|---------------|
+| <img src="assets/xray.png" width="500"/> |
 
 </div>
 
 ---
 
-## Explanation of UI & Prediction
+## Explanation of Features
 
-### 1. Symptom Input Screen
+### 1. Dashboard
 
-- Users enter symptoms through a form interface  
-- Inputs are processed and converted into numerical features  
-- These features are passed to the trained model  
+- Central hub of the application  
+- Provides access to all modules:
+  - X-ray analysis  
+  - Medical reports  
+  - Medication reviews  
+- Includes **dark/light mode toggle**  
+- Designed for clean navigation and usability  
 
 ---
 
-### 2. Prediction Output Screen
+### 2. X-Ray Analysis (Computer Vision)
 
-- Displays the predicted disease based on input symptoms  
-- Shows the most likely condition derived from the model  
-- May include additional information such as confidence or related symptoms  
+- Users upload chest X-ray images  
+- Deep learning model analyzes the image  
+- Outputs:
+  - Predicted condition (Normal / Pneumonia / etc.)  
+  - Confidence score  
+  - Class probability distribution  
+  - Clinical notes and recommendations  
 
-This represents the **final prediction output of the ML model**.
+This module uses **CNN-based image classification**.
+
+---
+
+### 3. Medical Reports (NLP)
+
+- Users input medical report text  
+- System processes and extracts key information  
+- Outputs:
+  - Categorized insights  
+  - Structured summaries  
+  - Important medical highlights  
+
+This module uses **text processing and NLP techniques**.
+
+---
+
+### 4. Medication Reviews (NLP + Sentiment Analysis)
+
+- Users input medication name and experience  
+- System analyzes sentiment and extracts meaning  
+
+Outputs include:
+- Sentiment (positive/negative)  
+- Confidence score  
+- Therapeutic use  
+- Summary  
+- Key insights  
+
+This helps understand real-world medication effectiveness.
+
+---
+
+### 5. Safety First Design
+
+- If model confidence is low → avoids unreliable prediction  
+- Encourages clinical review instead of blind automation  
+- Designed to reduce risk in sensitive healthcare scenarios  
 
 ---
 
 ## Key Features
 
-- Disease prediction using machine learning  
-- Symptom-based input system  
-- Real-time prediction output  
-- Data preprocessing and feature mapping  
-- Web-based interface using Flask  
-- Easy-to-use and responsive design  
+- Multi-module AI system (CV + NLP)  
+- X-ray image classification  
+- Medical text analysis and summarization  
+- Sentiment analysis for medication reviews  
+- Confidence-based safety mechanism  
+- Modern responsive UI with dark mode  
+- Structured and interpretable outputs  
 
 ---
 
@@ -85,11 +144,11 @@ This represents the **final prediction output of the ML model**.
 | Category | Technology |
 |----------|-----------|
 | Language | <img src="https://img.icons8.com/color/20/python.png"/> Python |
-| ML Framework | <img src="https://img.icons8.com/color/20/artificial-intelligence.png"/> Scikit-learn |
-| Data Processing | <img src="https://img.icons8.com/color/20/pandas.png"/> Pandas |
-| Numerical | <img src="https://img.icons8.com/color/20/numpy.png"/> NumPy |
+| Deep Learning | <img src="https://img.icons8.com/color/20/artificial-intelligence.png"/> TensorFlow / CNN |
+| NLP | <img src="https://img.icons8.com/color/20/nlp.png"/> Text Processing |
 | Backend | <img src="https://img.icons8.com/ios-filled/20/000000/flask.png"/> Flask |
-| Frontend | <img src="https://img.icons8.com/color/20/html-5.png"/> HTML |
+| Frontend | <img src="https://img.icons8.com/color/20/html-5.png"/> HTML / CSS / JS |
+| Visualization | <img src="https://img.icons8.com/color/20/combo-chart.png"/> Charts & UI Components |
 
 </div>
 
@@ -98,112 +157,62 @@ This represents the **final prediction output of the ML model**.
 ## Project Structure
 
 ```
-02_ai_healthcare/
-├── dataset/
-│   └── disease_data.csv
-├── model/
-│   └── trained_model.pkl
+ai_healthcare_assistant/
 ├── app.py
+├── models/
+│   ├── xray_model.h5
+│   └── nlp_models.pkl
+├── routes/
+│   ├── xray.py
+│   ├── reports.py
+│   └── medication.py
 ├── templates/
-│   ├── index.html
-│   └── result.html
 ├── static/
-│   └── style.css
+├── assets/
+│   ├── home.png
+│   ├── dark.png
+│   ├── medical_reports.png
+│   ├── medication.png
+│   └── xray.png
 ├── requirements.txt
-└── assets/
-    ├── input.png
-    └── output.png
+└── README.md
 ```
 
 ---
 
 ## How It Works
 
-1. User inputs symptoms  
-2. Input is preprocessed into model-readable format  
-3. Model analyzes symptom patterns  
-4. Prediction is generated  
-5. Result is displayed on UI  
-
----
-
-## Model Details
-
-- Classification model trained on symptom-disease dataset  
-- Learns relationships between symptoms and diseases  
-- Outputs most probable disease  
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8+  
-
----
-
-### Installation
-
-```bash
-git clone https://github.com/priyanildz/AI-Healthcare-Project.git
-cd AI-Healthcare-Project
-```
-
-```bash
-python -m venv venv
-```
-
-```bash
-# Windows
-venv\Scripts\activate
-
-# macOS/Linux
-source venv/bin/activate
-```
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Run Application
-
-```bash
-python app.py
-```
-
-Open:
-
-```
-http://127.0.0.1:5000
-```
+1. User selects module  
+2. Inputs data (image/text)  
+3. Backend processes input using ML/DL models  
+4. Results are generated with confidence scores  
+5. Output is displayed with structured insights  
 
 ---
 
 ## Use Cases
 
-- Preliminary disease prediction  
-- Healthcare data analysis  
-- Educational ML project  
-- Decision-support systems  
+- AI-assisted medical analysis  
+- Educational healthcare tools  
+- Clinical decision support (non-diagnostic)  
+- Research and experimentation  
 
 ---
 
 ## Future Improvements
 
-- Add more diseases and datasets  
-- Improve model accuracy  
-- Add confidence scores  
-- Deploy as full-scale healthcare assistant  
-- Integrate with medical APIs  
+- Real-time deployment with APIs  
+- Integration with hospital systems  
+- Larger datasets for improved accuracy  
+- Explainable AI visualizations  
+- Mobile application support  
 
 ---
 
 ## Disclaimer
 
-This project is for educational purposes only and should not be used as a substitute for professional medical advice.
+This application is for educational and research purposes only.  
+It does not replace professional medical advice, diagnosis, or treatment.
 
 ---
 
