@@ -1,11 +1,11 @@
 <div align="center">
 
-# <img src="https://img.icons8.com/fluency/48/medical-doctor.png" width="40"/> AI Healthcare Assistant
+# <img src="https://img.icons8.com/fluency/48/artificial-intelligence.png" width="40"/> TEXTREFINE AI
 
-### X-Ray Analysis • Medical NLP • Intelligent Healthcare System
+### Grammar Correction • Paraphrasing • Sentiment Analysis
 
 <p>
-A multi-module AI-powered healthcare assistant that combines computer vision and natural language processing to analyze medical data, assist diagnosis, and provide intelligent insights.
+An AI-powered text refinement platform that enhances writing by correcting grammar, improving phrasing, and analyzing sentiment in real-time.
 </p>
 
 <br/>
@@ -16,11 +16,10 @@ A multi-module AI-powered healthcare assistant that combines computer vision and
 
 <br/><br/>
 
-<img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Deep%20Learning-CNN-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
-<img src="https://img.shields.io/badge/NLP-Text%20Analysis-8E24AA?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Flask-Web%20App-000000?style=for-the-badge&logo=flask&logoColor=white"/>
-<img src="https://img.shields.io/badge/UI-Modern%20Dashboard-673AB7?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Python-Backend-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/NLP-Text%20Processing-8E24AA?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Flask-Web%20Framework-000000?style=for-the-badge&logo=flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS%20%7C%20JS-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
 <img src="https://img.shields.io/badge/License-MIT-2E7D32?style=for-the-badge"/>
 
 </div>
@@ -29,111 +28,149 @@ A multi-module AI-powered healthcare assistant that combines computer vision and
 
 ## Overview
 
-**AI Healthcare Assistant** is an advanced AI-driven system that integrates multiple healthcare functionalities into a single platform.
+**TEXTREFINE AI** is a web-based application designed to improve written communication using artificial intelligence.
 
-It combines:
-- **Computer Vision** for X-ray analysis  
-- **Natural Language Processing (NLP)** for medical reports  
-- **Sentiment & semantic analysis** for medication reviews  
+It provides:
+- Grammar correction  
+- Paraphrasing suggestions  
+- Spelling correction  
+- Sentiment analysis  
 
-The application is designed with a strong focus on **safety, interpretability, and usability**, making it a comprehensive healthcare intelligence tool.
+The system is built to help users refine text for professional, academic, and everyday communication.
 
 ---
 
-## Screenshots & Modules
+## Screenshots & Explanation
 
 <div align="center">
 
-| Dashboard | Dark Mode |
-|-----------|-----------|
-| <img src="assets/home.png" width="400"/> | <img src="assets/dark.png" width="400"/> |
-
-| Medical Reports | Medication Reviews |
-|----------------|-------------------|
-| <img src="assets/medical_reports.png" width="400"/> | <img src="assets/medication.png" width="400"/> |
-
-| X-Ray Analysis |
-|---------------|
-| <img src="assets/xray.png" width="500"/> |
+| About Section |
+|--------------|
+| <img src="assets/about.png" width="600"/> |
 
 </div>
 
----
+### About Page
 
-## Explanation of Features
-
-### 1. Dashboard
-
-- Central hub of the application  
-- Provides access to all modules:
-  - X-ray analysis  
-  - Medical reports  
-  - Medication reviews  
-- Includes **dark/light mode toggle**  
-- Designed for clean navigation and usability  
+- Introduces the purpose of the platform  
+- Focuses on improving communication using AI  
+- Includes motivational context and platform vision  
 
 ---
 
-### 2. X-Ray Analysis (Computer Vision)
+<div align="center">
 
-- Users upload chest X-ray images  
-- Deep learning model analyzes the image  
-- Outputs:
-  - Predicted condition (Normal / Pneumonia / etc.)  
-  - Confidence score  
-  - Class probability distribution  
-  - Clinical notes and recommendations  
+| Text Analysis |
+|--------------|
+| <img src="assets/analysis.png" width="600"/> |
 
-This module uses **CNN-based image classification**.
+</div>
 
----
+### Text Analysis Module
 
-### 3. Medical Reports (NLP)
-
-- Users input medical report text  
-- System processes and extracts key information  
-- Outputs:
-  - Categorized insights  
-  - Structured summaries  
-  - Important medical highlights  
-
-This module uses **text processing and NLP techniques**.
+- Core feature of the application  
+- User inputs text into the textbox  
+- After clicking **Analyze**, system returns:
+  - **Paraphrased / Grammar Corrected text**
+  - **Spelling corrected version**
+  - **Sentiment analysis (polarity & subjectivity)**  
 
 ---
 
-### 4. Medication Reviews (NLP + Sentiment Analysis)
+<div align="center">
 
-- Users input medication name and experience  
-- System analyzes sentiment and extracts meaning  
+| Contact Page |
+|-------------|
+| <img src="assets/contact.png" width="600"/> |
 
-Outputs include:
-- Sentiment (positive/negative)  
-- Confidence score  
-- Therapeutic use  
-- Summary  
-- Key insights  
+</div>
 
-This helps understand real-world medication effectiveness.
+### Contact Section
+
+- Allows users to send queries or feedback  
+- Includes form fields:
+  - Name  
+  - Email  
+  - Message  
 
 ---
 
-### 5. Safety First Design
+<div align="center">
 
-- If model confidence is low → avoids unreliable prediction  
-- Encourages clinical review instead of blind automation  
-- Designed to reduce risk in sensitive healthcare scenarios  
+| Communication Fields |
+|---------------------|
+| <img src="assets/fields.png" width="600"/> |
+
+</div>
+
+### Communication Fields
+
+- Demonstrates real-world use cases:
+  - Interview communication  
+  - Presentations  
+- Shows how the tool helps refine communication in different scenarios  
+
+---
+
+<div align="center">
+
+| Help Section |
+|--------------|
+| <img src="assets/help.png" width="600"/> |
+
+</div>
+
+### Help / Usage Guide
+
+- Provides step-by-step usage instructions  
+- Suggests workflow:
+  1. Analyze text  
+  2. Use corrected output  
+  3. Re-analyze for refinement  
+
+---
+
+<div align="center">
+
+| Login | Register |
+|------|----------|
+| <img src="assets/login.png" width="300"/> | <img src="assets/register.png" width="300"/> |
+
+</div>
+
+### Authentication Pages
+
+- Secure login and registration system  
+- Allows user account creation  
+- Supports personalized usage  
+
+---
+
+<div align="center">
+
+| User Reviews |
+|-------------|
+| <img src="assets/review.png" width="600"/> |
+
+</div>
+
+### User Review Section
+
+- Displays feedback from users  
+- Includes ratings and testimonials  
+- Helps build trust and credibility  
 
 ---
 
 ## Key Features
 
-- Multi-module AI system (CV + NLP)  
-- X-ray image classification  
-- Medical text analysis and summarization  
-- Sentiment analysis for medication reviews  
-- Confidence-based safety mechanism  
-- Modern responsive UI with dark mode  
-- Structured and interpretable outputs  
+- Grammar correction and paraphrasing  
+- Spelling correction system  
+- Sentiment analysis (polarity & subjectivity)  
+- Clean and user-friendly interface  
+- Authentication system (login/register)  
+- Contact and feedback system  
+- Multi-page structured application  
 
 ---
 
@@ -143,12 +180,10 @@ This helps understand real-world medication effectiveness.
 
 | Category | Technology |
 |----------|-----------|
-| Language | <img src="https://img.icons8.com/color/20/python.png"/> Python |
-| Deep Learning | <img src="https://img.icons8.com/color/20/artificial-intelligence.png"/> TensorFlow / CNN |
-| NLP | <img src="https://img.icons8.com/color/20/nlp.png"/> Text Processing |
-| Backend | <img src="https://img.icons8.com/ios-filled/20/000000/flask.png"/> Flask |
-| Frontend | <img src="https://img.icons8.com/color/20/html-5.png"/> HTML / CSS / JS |
-| Visualization | <img src="https://img.icons8.com/color/20/combo-chart.png"/> Charts & UI Components |
+| Backend | <img src="https://img.icons8.com/color/20/python.png"/> Python |
+| NLP | <img src="https://img.icons8.com/color/20/artificial-intelligence.png"/> Text Processing |
+| Framework | <img src="https://img.icons8.com/ios-filled/20/000000/flask.png"/> Flask |
+| Frontend | <img src="https://img.icons8.com/color/20/html-5.png"/> HTML <img src="https://img.icons8.com/color/20/css3.png"/> CSS <img src="https://img.icons8.com/color/20/javascript.png"/> JavaScript |
 
 </div>
 
@@ -157,23 +192,28 @@ This helps understand real-world medication effectiveness.
 ## Project Structure
 
 ```
-ai_healthcare_assistant/
+04_textrefine_ai/
 ├── app.py
-├── models/
-│   ├── xray_model.h5
-│   └── nlp_models.pkl
-├── routes/
-│   ├── xray.py
-│   ├── reports.py
-│   └── medication.py
 ├── templates/
+│   ├── index.html
+│   ├── about.html
+│   ├── contact.html
+│   ├── help.html
+│   ├── login.html
+│   ├── register.html
+│   └── review.html
 ├── static/
+│   ├── style.css
+│   └── scripts.js
 ├── assets/
-│   ├── home.png
-│   ├── dark.png
-│   ├── medical_reports.png
-│   ├── medication.png
-│   └── xray.png
+│   ├── about.png
+│   ├── analysis.png
+│   ├── contact.png
+│   ├── fields.png
+│   ├── help.png
+│   ├── login.png
+│   ├── register.png
+│   └── review.png
 ├── requirements.txt
 └── README.md
 ```
@@ -182,37 +222,33 @@ ai_healthcare_assistant/
 
 ## How It Works
 
-1. User selects module  
-2. Inputs data (image/text)  
-3. Backend processes input using ML/DL models  
-4. Results are generated with confidence scores  
-5. Output is displayed with structured insights  
+1. User inputs text  
+2. Backend processes text using NLP techniques  
+3. System generates:
+   - Corrected grammar  
+   - Paraphrased text  
+   - Spelling corrections  
+   - Sentiment scores  
+4. Results displayed instantly on UI  
 
 ---
 
 ## Use Cases
 
-- AI-assisted medical analysis  
-- Educational healthcare tools  
-- Clinical decision support (non-diagnostic)  
-- Research and experimentation  
+- Improving writing skills  
+- Resume and professional writing  
+- Academic content refinement  
+- Email and communication enhancement  
 
 ---
 
 ## Future Improvements
 
-- Real-time deployment with APIs  
-- Integration with hospital systems  
-- Larger datasets for improved accuracy  
-- Explainable AI visualizations  
-- Mobile application support  
-
----
-
-## Disclaimer
-
-This application is for educational and research purposes only.  
-It does not replace professional medical advice, diagnosis, or treatment.
+- Advanced AI models (LLMs)  
+- Multi-language support  
+- Tone detection and rewriting  
+- Export/download results  
+- Real-time suggestions  
 
 ---
 
